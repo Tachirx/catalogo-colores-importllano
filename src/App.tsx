@@ -34,7 +34,7 @@ function PaginaPortada() {
     { marca: 'CEBRA', imagen: imagenCebra, descripcion: 'Pinturas de Calidad' },
     { marca: 'PINTUPLAST', imagen: logotipoPintuplast, descripcion: 'Acabados Sedosos' },
     { marca: 'PRO-PLASTIC', imagen: logotipoProplastic, descripcion: 'Línea Arquitectónica' },
-    { marca: 'CROMAS', imagen: logotipoCromas, descripcion: 'Gala & Máxima' },
+    { marca: 'CROMAS', imagen: logotipoCromas, descripcion: 'Gala, Máxima & Total' },
   ];
 
   return (
@@ -95,21 +95,39 @@ function PaginaPortada() {
 
 function PaginaCatalogo({ datos, indice, total_paginas }: { datos: PaintLine; indice: number; total_paginas: number }) {
   const imagen_marca = obtener_imagen_seccion(datos.brand, datos.line);
+  const total_colores = datos.colors.length;
+
+  const es_catalogo_denso = total_colores >= 25;
+  const es_catalogo_medio = total_colores > 16 && total_colores < 25;
+
+  const clase_cuadricula = es_catalogo_denso
+    ? 'grid-cols-4 sm:grid-cols-5 md:grid-cols-5 gap-2 md:gap-2.5'
+    : es_catalogo_medio
+    ? 'grid-cols-3 sm:grid-cols-4 md:grid-cols-4 gap-3 md:gap-3.5'
+    : 'grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3.5 md:gap-4';
+
+  const altura_muestra = es_catalogo_denso
+    ? 'h-12 md:h-14 mb-1.5'
+    : es_catalogo_medio
+    ? 'h-16 md:h-20 mb-2'
+    : 'h-20 md:h-24 mb-2.5';
+
+  const padding_tarjeta = es_catalogo_denso ? 'p-2' : 'p-2.5 md:p-3';
 
   return (
-    <div className="print-page min-h-screen bg-[#0d0d0d] text-white p-8 md:p-12 lg:p-14 flex flex-col justify-between font-body box-border">
-      <div>
-        {/* Cabecera: Marca, Línea y Logotipo de pintura con dimensiones homogéneas */}
-        <header className="border-b border-white/15 pb-6 mb-8 flex justify-between items-center gap-4">
+    <div className="print-page min-h-screen bg-[#0d0d0d] text-white p-6 md:p-10 lg:p-12 flex flex-col justify-between font-body box-border">
+      <div className="flex-1 flex flex-col justify-between">
+        {/* Cabecera: Marca, Línea y Logotipo de pintura */}
+        <header className={`border-b border-white/15 ${es_catalogo_denso ? 'pb-3 mb-4' : 'pb-5 mb-6'} flex justify-between items-center gap-4`}>
           <div className="flex-1">
-            <span className="inline-block text-[11px] font-black text-white/70 uppercase tracking-[0.25em] mb-1.5">
+            <span className="inline-block text-[10px] md:text-[11px] font-black text-white/70 uppercase tracking-[0.25em] mb-1">
               {datos.brand}
             </span>
-            <h1 className="text-3xl md:text-5xl font-black text-white font-display italic tracking-tight leading-none uppercase">
+            <h1 className={`${es_catalogo_denso ? 'text-2xl md:text-4xl' : 'text-3xl md:text-5xl'} font-black text-white font-display italic tracking-tight leading-none uppercase`}>
               {datos.line}
             </h1>
             {datos.description && (
-              <p className="text-xs md:text-sm text-white/75 leading-relaxed font-normal mt-3 max-w-2xl">
+              <p className={`${es_catalogo_denso ? 'text-[11px] line-clamp-2 mt-1.5' : 'text-xs md:text-sm mt-2.5'} text-white/75 leading-snug font-normal max-w-2xl`}>
                 {datos.description}
               </p>
             )}
@@ -117,7 +135,7 @@ function PaginaCatalogo({ datos, indice, total_paginas }: { datos: PaintLine; in
 
           <div className="flex-shrink-0">
             {imagen_marca ? (
-              <div className="w-32 h-24 md:w-44 md:h-28 bg-white rounded-xl p-2.5 shadow-2xl border border-white/20 flex items-center justify-center overflow-hidden">
+              <div className={`${es_catalogo_denso ? 'w-28 h-20 md:w-36 md:h-22 p-2' : 'w-32 h-24 md:w-44 md:h-28 p-2.5'} bg-white rounded-xl shadow-2xl border border-white/20 flex items-center justify-center overflow-hidden`}>
                 <img
                   src={imagen_marca}
                   alt={`Logotipo de ${datos.brand} ${datos.line}`}
@@ -132,26 +150,26 @@ function PaginaCatalogo({ datos, indice, total_paginas }: { datos: PaintLine; in
           </div>
         </header>
 
-        {/* Cuadrícula de muestras de color */}
-        <main className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3.5 md:gap-4">
+        {/* Cuadrícula adaptativa de muestras de color */}
+        <main className={`grid ${clase_cuadricula} flex-1 my-auto items-stretch`}>
           {datos.colors.map((color, i) => (
             <div
               key={i}
-              className="flex flex-col p-3 rounded-lg bg-white/[0.04] border border-white/10 shadow-sm"
+              className={`flex flex-col ${padding_tarjeta} rounded-lg bg-white/[0.04] border border-white/10 shadow-sm`}
             >
               <div
-                className="w-full h-20 md:h-24 mb-2.5 rounded-md border border-white/10 shadow-inner"
+                className={`w-full ${altura_muestra} rounded-md border border-white/10 shadow-inner flex-shrink-0`}
                 style={{ backgroundColor: color.hex }}
               />
               <div className="mt-auto px-0.5">
-                <h3 className="font-extrabold text-white text-[10.5px] uppercase leading-tight tracking-tight">
+                <h3 className={`font-extrabold text-white ${es_catalogo_denso ? 'text-[9px]' : 'text-[10.5px]'} uppercase leading-tight tracking-tight truncate`}>
                   {color.name}
                 </h3>
                 {color.tone && (
-                  <p className="text-[8.5px] text-white/60 font-light mt-0.5">{color.tone}</p>
+                  <p className="text-[8px] text-white/60 font-light mt-0.5 truncate">{color.tone}</p>
                 )}
                 {color.code && (
-                  <p className="text-[9px] text-white/45 font-mono mt-1 tracking-wider">{color.code}</p>
+                  <p className="text-[8.5px] text-white/45 font-mono mt-0.5 tracking-wider">{color.code}</p>
                 )}
               </div>
             </div>

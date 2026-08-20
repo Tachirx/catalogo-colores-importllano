@@ -4,6 +4,27 @@
 
 ---
 
+### [2026-08-20 07:15:00 -04:00] - Blindaje de Maquetación para Impresión A4 y Cuadrícula Adaptativa por Densidad de Color
+
+#### 1. Contexto y Motivo del Cambio
+* **Problema Identificado:**
+  * Al imprimir en formato A4, las secciones con alta densidad de colores (como *PRO-PLASTIC CAUCHO MATE* con 35 colores, *PRO-PLASTIC ESMALTE* con 29 colores o *PINTUPLAST SEDA* con 27 colores) corrían el riesgo de desbordar la altura física de una hoja A4 (297 mm), lo que provocaría que el motor de impresión del navegador o del visor PDF partiese la sección en 2 hojas físicas (quedando los últimos colores y el pie de página huérfanos en una segunda hoja).
+* **Objetivo:**
+  * Garantizar de forma 100% estricta y matemática que **CADA CARTA DE COLOR quede exactamente en UNA SOLA HOJA A4**, sin cortes, sin desbordes y sin generar páginas huérfanas.
+
+#### 2. Solución Técnica Implementada
+1. **Reglas CSS Estrictas para `@media print` ([src/index.css](file:///c:/Users/Admin/Downloads/catalago/src/index.css)):**
+   * Se fijó la altura exacta de cada página `.print-page` a `height: 297mm !important; max-height: 297mm !important; width: 210mm !important; overflow: hidden !important;`.
+   * Se establecieron las directivas de paginación forzada: `break-after: page !important; page-break-after: always !important; break-inside: avoid !important; page-break-inside: avoid !important;`.
+   * Se ajustó el acolchado de impresión a `padding: 10mm 12mm !important; box-sizing: border-box !important;`.
+2. **Cuadrícula Adaptativa por Densidad ([src/App.tsx](file:///c:/Users/Admin/Downloads/catalago/src/App.tsx)):**
+   * Se implementó lógica de cálculo dinámico del layout según el volumen de muestras:
+     * **Catálogos Densos ($\ge 25$ colores, ej. 35, 29, 27):** Cuadrícula de 5 columnas compacta (`gap-2 md:gap-2.5`), swatches optimizados (`h-12 md:h-14`), cabecera compacta y truncado seguro de textos para que los 35 colores quepan holgados en 297 mm.
+     * **Catálogos Medios ($17$ a $24$ colores, ej. Cebra, Pro-Plastic Satinado):** Cuadrícula de 4 columnas con muestras intermedias (`h-16 md:h-20`).
+     * **Catálogos Estándar ($\le 16$ colores, ej. Total, Gala, Máxima):** Cuadrícula de 4 columnas con muestras amplias (`h-20 md:h-24`).
+
+---
+
 ### [2026-08-20 06:48:00 -04:00] - Ajuste de Escala del Logotipo de Pie de Página, Inicialización de Repositorio y Publicación en GitHub
 
 #### 1. Contexto y Motivo del Cambio
