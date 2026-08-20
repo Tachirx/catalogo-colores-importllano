@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,900&family=Inter:wght@300;400;600;800&display=swap');
+@import "tailwindcss";
+
+@layer utilities {
+  .font-display { font-family: 'Playfair Display', serif; }
+  .font-body { font-family: 'Inter', sans-serif; }
+  .zebra-pattern {
+    background: repeating-linear-gradient(45deg, #000, #000 20px, #1a1a1a 20px, #1a1a1a 40px);
+  }
+}
+
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+  
+  html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    background-color: #0d0d0d !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .print-page {
+    page-break-after: always;
+    page-break-inside: avoid;
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0;
+    padding: 12mm;
+    box-sizing: border-box;
+    position: relative;
+    background: #0d0d0d;
+  }
+  
+  .print-hide {
+    display: none !important;
+  }
+
+  /* Force background colors to print */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+}
