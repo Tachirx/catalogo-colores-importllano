@@ -88,7 +88,6 @@ function PaginaPortada() {
       <div className="w-full border-t border-white/10 pt-4 flex flex-col md:flex-row items-center justify-between text-white/40 text-[10px] uppercase tracking-widest z-10">
         <span>Importllano C.A.</span>
         <span>Guía de Especificación y Carta de Colores</span>
-        <span>Impresión Alta Fidelidad</span>
       </div>
     </div>
   );

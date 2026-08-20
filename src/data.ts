@@ -16,7 +16,7 @@ export const catalogData: PaintLine[] = [
   {
     brand: "CEBRA",
     line: "CAUCHO",
-    description: "Pintura mate interior de excelente textura y acabados.",
+    description: "Pintura mate clase C, interior de excelente textura y acabados.",
     colors: [
       { name: "BLANCO NIEVE", code: "9710-40", hex: "#FFFFFF", tone: "Blanco puro" },
       { name: "BLANCO OSTRA", code: "9711-50", hex: "#F6ECCF", tone: "Crema marfil claro" },
@@ -182,6 +182,7 @@ export const catalogData: PaintLine[] = [
   {
     brand: "TOTAL",
     line: "CAUCHO MATE",
+    description: "Es una alternativa práctica y económica, vinil-acrílica de acabado mate, diseñada para embellecer y proteger espacios interiores con una fácil aplicación y buen rendimiento.",
     colors: [
       { name: "MORADO UVA", hex: "#9584ec" },
       { name: "GRIS CATATUMBO", hex: "#919fac" },
@@ -200,6 +201,7 @@ export const catalogData: PaintLine[] = [
   {
     brand: "GALA",
     line: "CAUCHO MATE",
+    description: "Ofrece excelente cubrimiento, alto rendimiento, bajo olor y salpique, proporcionando un acabado resistente y duradero",
     colors: [
       { name: "BLANCO", hex: "#ffffff" },
       { name: "PORCELANA", hex: "#fffffb" },
@@ -218,6 +220,7 @@ export const catalogData: PaintLine[] = [
   {
     brand: "GALA",
     line: "SEDA",
+    description: "Acabado elegante, brillo duradero y máxima lavabilidad, ideal para áreas de alto tráfico.",
     colors: [
       { name: "BLANCO", hex: "#ffffff" },
       { name: "MARFIL", hex: "#fbf4d8" },
@@ -233,6 +236,7 @@ export const catalogData: PaintLine[] = [
   {
     brand: "MAXIMA",
     line: "CAUCHO",
+    description: "Ofrece bajo olor, mínimo salpique, acabado mate y una gran relación precio-valor para proteger mampostería, concreto y drywall",
     colors: [
       { name: "BLANCO", hex: "#ffffff" },
       { name: "OSTRA CLARO", hex: "#ddd7c7" },
