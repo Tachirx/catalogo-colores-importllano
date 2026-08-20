@@ -40,7 +40,7 @@ function PaginaPortada() {
   return (
     <div className="print-page flex flex-col items-center justify-between bg-[#0d0d0d] text-white min-h-screen p-8 md:p-12 text-center border-b-4 border-white/10 zebra-pattern relative z-0 box-border">
       <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/85 to-black/95 z-[-1]" />
-      
+
       <div className="w-full flex flex-col items-center gap-6 z-10 pt-4">
         <div className="w-48 h-48 md:w-56 md:h-56 rounded-full border-4 border-white/20 bg-white flex items-center justify-center p-6 shadow-[0_10px_35px_rgba(0,0,0,0.8)] overflow-hidden">
           <img src={logotipoImportllano} alt="Importllano Logo" className="w-full h-full object-contain" />
@@ -163,15 +163,15 @@ function PaginaCatalogo({ datos, indice, total_paginas }: { datos: PaintLine; in
       {/* Pie de página con logotipo de Importllano a la izquierda para respaldo institucional e impresión */}
       <footer className="mt-10 pt-5 border-t border-white/15 flex items-center justify-between text-white/60 text-xs">
         <div className="flex items-center gap-4">
-          <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white p-2 flex items-center justify-center shadow-2xl border-2 border-white/30 flex-shrink-0">
-            <img src={logotipoImportllano} alt="Importllano" className="w-full h-full object-contain" />
+          <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white flex items-center justify-center shadow-2xl border-2 border-white/30 flex-shrink-0 overflow-hidden">
+            <img src={logotipoImportllano} alt="Importllano" className="w-[78%] h-[78%] object-contain" />
           </div>
           <div className="flex flex-col text-left">
             <span className="text-sm md:text-base font-black uppercase tracking-wider text-white">
               Importllano
             </span>
             <span className="text-[10px] md:text-xs uppercase tracking-widest text-white/60 font-bold">
-              Distribución Exclusiva
+              Distribuidor Oficial
             </span>
           </div>
         </div>
